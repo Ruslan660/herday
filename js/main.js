@@ -1,5 +1,5 @@
 (() => {
-    const TOTAL_PAGES = 6;
+    const TOTAL_PAGES = 7;
     let currentPage = 0;
     let isAnimating = false;
     let touchStartY = 0;
