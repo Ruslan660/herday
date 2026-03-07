@@ -1,0 +1,556 @@
+:root {
+    --pink-light: #FFF0F3;
+    --pink: #FFD6E0;
+    --pink-mid: #E8A0BF;
+    --pink-dark: #C77DA8;
+    --white: #FFFAF5;
+    --gold: #D4A373;
+    --gold-light: #E8C9A0;
+    --text: #5C3D4E;
+    --text-light: #8B6578;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+html {
+    height: 100%;
+    overflow: hidden;
+}
+
+body {
+    height: 100%;
+    overflow: hidden;
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    background: var(--pink-light);
+    color: var(--text);
+    -webkit-font-smoothing: antialiased;
+}
+
+/* ============ MUSIC BUTTON ============ */
+.music-btn {
+    position: fixed;
+    top: 16px;
+    right: 16px;
+    z-index: 100;
+    width: 44px;
+    height: 44px;
+    border: none;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    color: var(--pink-dark);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s, background 0.2s;
+}
+
+.music-btn:active {
+    transform: scale(0.9);
+}
+
+.music-btn svg {
+    width: 22px;
+    height: 22px;
+}
+
+/* ============ FLOATING HEARTS ============ */
+.hearts-container {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.heart {
+    position: absolute;
+    bottom: -30px;
+    opacity: 0;
+    animation: floatHeart linear forwards;
+    font-size: 18px;
+    filter: blur(0.5px);
+}
+
+@keyframes floatHeart {
+    0% {
+        opacity: 0;
+        transform: translateY(0) rotate(0deg) scale(0.5);
+    }
+    10% {
+        opacity: 0.6;
+    }
+    50% {
+        opacity: 0.4;
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-100vh) rotate(360deg) scale(1);
+    }
+}
+
+/* ============ PAGE INDICATOR ============ */
+.page-indicator {
+    position: fixed;
+    bottom: 28px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 50;
+    display: flex;
+    gap: 8px;
+}
+
+.page-indicator__dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--pink-mid);
+    opacity: 0.4;
+    transition: all 0.3s ease;
+}
+
+.page-indicator__dot.active {
+    opacity: 1;
+    background: var(--pink-dark);
+    transform: scale(1.3);
+}
+
+/* ============ SLIDER & PAGES ============ */
+.slider {
+    height: 100vh;
+    height: 100dvh;
+    position: relative;
+    overflow: hidden;
+    max-width: 430px;
+    margin: 0 auto;
+}
+
+.page {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(40px);
+    transition: opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1),
+                transform 0.7s cubic-bezier(0.4, 0, 0.2, 1),
+                visibility 0s linear 0.7s;
+    pointer-events: none;
+    z-index: 1;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    background: var(--pink-light);
+}
+
+.page.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    pointer-events: auto;
+    z-index: 10;
+    transition: opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1),
+                transform 0.7s cubic-bezier(0.4, 0, 0.2, 1),
+                visibility 0s linear 0s;
+}
+
+.page.exit-up {
+    opacity: 0;
+    transform: translateY(-40px);
+}
+
+.page__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 60px 28px 80px;
+    min-height: 100%;
+    width: 100%;
+    gap: 20px;
+}
+
+/* ============ COVER PAGE ============ */
+.cover-decoration {
+    display: flex;
+    gap: 12px;
+    font-size: 28px;
+    color: var(--pink-mid);
+    animation: fadeInDown 1s ease 0.2s both;
+}
+
+.cover-flower {
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.cover-flower:nth-child(2) {
+    animation-delay: 0.3s;
+}
+
+.cover-flower:nth-child(3) {
+    animation-delay: 0.6s;
+}
+
+.page__label {
+    font-family: 'Playfair Display', serif;
+    font-size: 14px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--pink-dark);
+    animation: fadeInDown 1s ease 0.4s both;
+}
+
+.page__title--cover {
+    font-family: 'Playfair Display', serif;
+    font-size: 36px;
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--text);
+    animation: fadeInDown 1s ease 0.6s both;
+}
+
+.page__subtitle {
+    font-size: 18px;
+    font-style: italic;
+    color: var(--text-light);
+    animation: fadeInDown 1s ease 0.8s both;
+}
+
+.cover-photo {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 4px solid var(--pink);
+    box-shadow: 0 8px 32px rgba(200, 125, 168, 0.25);
+    animation: fadeInScale 1s ease 1s both;
+    flex-shrink: 0;
+}
+
+.cover-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* ============ CONTENT PAGES ============ */
+.page__emoji {
+    font-size: 40px;
+    animation: fadeInDown 0.6s ease both;
+}
+
+.page__title {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    font-weight: 700;
+    line-height: 1.3;
+    color: var(--text);
+    animation: fadeInDown 0.6s ease 0.15s both;
+}
+
+.page__photo {
+    width: 100%;
+    max-width: 300px;
+    aspect-ratio: 4 / 3;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 3px solid var(--pink);
+    box-shadow: 0 6px 24px rgba(200, 125, 168, 0.2);
+    animation: fadeInScale 0.6s ease 0.3s both;
+    flex-shrink: 0;
+}
+
+.page__photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* ============ PLACEHOLDER ============ */
+.placeholder {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--pink) 0%, var(--pink-light) 100%);
+    color: var(--pink-dark);
+}
+
+.placeholder svg {
+    width: 48px;
+    height: 48px;
+    opacity: 0.5;
+}
+
+.placeholder span {
+    font-size: 14px;
+    opacity: 0.6;
+    font-style: italic;
+}
+
+/* ============ TEXT ============ */
+.page__text {
+    font-size: 18px;
+    line-height: 1.7;
+    color: var(--text-light);
+    max-width: 340px;
+    animation: fadeInDown 0.6s ease 0.45s both;
+}
+
+/* ============ BUTTONS ============ */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 32px;
+    border: none;
+    border-radius: 50px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    animation: fadeInDown 0.6s ease 0.6s both;
+}
+
+.btn svg {
+    width: 18px;
+    height: 18px;
+}
+
+.btn:active {
+    transform: scale(0.95);
+}
+
+.btn--open {
+    background: linear-gradient(135deg, var(--pink-mid), var(--pink-dark));
+    color: white;
+    box-shadow: 0 4px 20px rgba(200, 125, 168, 0.4);
+}
+
+.btn--open:hover {
+    box-shadow: 0 6px 28px rgba(200, 125, 168, 0.5);
+}
+
+.btn--next {
+    background: white;
+    color: var(--pink-dark);
+    border: 2px solid var(--pink);
+    box-shadow: 0 2px 12px rgba(200, 125, 168, 0.15);
+}
+
+.btn--next:hover {
+    background: var(--pink-light);
+}
+
+
+/* ============ COUPON ============ */
+.coupon {
+    width: 100%;
+    max-width: 320px;
+    animation: fadeInScale 0.8s ease 0.3s both;
+}
+
+.coupon__inner {
+    background: white;
+    border: 3px dashed var(--gold);
+    border-radius: 20px;
+    padding: 28px 24px;
+    position: relative;
+    box-shadow: 0 8px 32px rgba(212, 163, 115, 0.2);
+}
+
+.coupon__inner::before,
+.coupon__inner::after {
+    content: '';
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    background: var(--pink-light);
+    border-radius: 50%;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.coupon__inner::before {
+    left: -14px;
+    box-shadow: inset -2px 0 0 var(--gold);
+}
+
+.coupon__inner::after {
+    right: -14px;
+    box-shadow: inset 2px 0 0 var(--gold);
+}
+
+.coupon__header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 16px;
+}
+
+.coupon__flower {
+    color: var(--gold);
+    font-size: 20px;
+}
+
+.coupon__label {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: 6px;
+    color: var(--gold);
+}
+
+.coupon__body {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.coupon__for {
+    font-size: 16px;
+    color: var(--text-light);
+}
+
+.coupon__for strong {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    color: var(--text);
+}
+
+.coupon__divider {
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--gold-light), transparent);
+}
+
+.coupon__desc {
+    font-size: 17px;
+    line-height: 1.6;
+    color: var(--text);
+}
+
+.coupon__desc strong {
+    color: var(--pink-dark);
+}
+
+.coupon__valid {
+    font-size: 14px;
+    color: var(--text-light);
+}
+
+.coupon__valid strong {
+    color: var(--gold);
+    font-size: 16px;
+    letter-spacing: 2px;
+}
+
+.coupon__footer {
+    margin-top: 16px;
+    font-size: 14px;
+    color: var(--pink-mid);
+}
+
+.page__footer-text {
+    font-size: 16px;
+    font-style: italic;
+    color: var(--text-light);
+    animation: fadeInDown 0.6s ease 0.8s both;
+}
+
+/* ============ ANIMATIONS ============ */
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-16px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: scale(0.85);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.15); }
+}
+
+/* Re-trigger animations on page activation */
+.page.active .page__emoji,
+.page.active .page__title,
+.page.active .page__photo,
+.page.active .page__text,
+.page.active .btn,
+.page.active .cover-decoration,
+.page.active .page__label,
+.page.active .page__subtitle,
+.page.active .cover-photo,
+.page.active .coupon,
+.page.active .page__footer-text {
+    animation-play-state: running;
+}
+
+/* ============ RESPONSIVE ============ */
+@media (max-height: 700px) {
+    .page__content {
+        padding: 40px 24px 70px;
+        gap: 14px;
+    }
+    .page__title { font-size: 22px; }
+    .page__text { font-size: 16px; }
+    .cover-photo { width: 160px; height: 160px; }
+    .page__photo { max-width: 240px; }
+}
+
+@media (min-width: 431px) {
+    body {
+        background: linear-gradient(135deg, #f8e8ef 0%, var(--pink-light) 50%, #f8e8ef 100%);
+    }
+
+    .slider {
+        border-left: 1px solid var(--pink);
+        border-right: 1px solid var(--pink);
+        box-shadow: 0 0 60px rgba(200, 125, 168, 0.15);
+    }
+}
+
+/* Safe area for notched iPhones */
+@supports (padding: env(safe-area-inset-top)) {
+    .page__content {
+        padding-top: calc(60px + env(safe-area-inset-top));
+        padding-bottom: calc(80px + env(safe-area-inset-bottom));
+    }
+
+    .music-btn {
+        top: calc(16px + env(safe-area-inset-top));
+    }
+
+    .page-indicator {
+        bottom: calc(28px + env(safe-area-inset-bottom));
+    }
+}

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>С 8 Марта, Анель!</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+
+    <div class="hearts-container" id="hearts"></div>
+
+    <div class="page-indicator" id="pageIndicator"></div>
+
+    <main class="slider" id="slider">
+
+        <!-- PAGE 0: Cover -->
+        <section class="page page--cover active" data-index="0">
+            <div class="page__content">
+                <div class="cover-decoration">
+                    <span class="cover-flower">✿</span>
+                    <span class="cover-flower">❀</span>
+                    <span class="cover-flower">✿</span>
+                </div>
+                <p class="page__label">8 марта</p>
+                <h1 class="page__title page__title--cover">Дорогая Анель</h1>
+                <p class="page__subtitle">У меня есть для тебя кое-что особенное</p>
+                <div class="cover-photo">
+                    <img src="assets/images/photo1.png" alt="Анель">
+                </div>
+                <button class="btn btn--open" onclick="goToPage(1)">
+                    Открыть
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
+                </button>
+            </div>
+        </section>
+
+        <!-- PAGE 1 -->
+        <section class="page" data-index="1">
+            <div class="page__content">
+                <span class="page__emoji">💖</span>
+                <h2 class="page__title">Ты — лучшее, что случилось в моей жизни</h2>
+                <p class="page__text">
+                    Каждый день рядом с тобой — это подарок. Ты делаешь мой мир ярче, теплее и добрее. 
+                    Спасибо, что ты есть. Спасибо, что выбираешь быть рядом.
+                </p>
+                <button class="btn btn--next" onclick="goToPage(2)">
+                    Дальше
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </button>
+            </div>
+        </section>
+
+        <!-- PAGE 2 -->
+        <section class="page" data-index="2">
+            <div class="page__content">
+                <span class="page__emoji">✨</span>
+                <h2 class="page__title">Твоя улыбка освещает мир</h2>
+                <p class="page__text">
+                    Когда ты улыбаешься — весь мир замирает. Ты невероятно красива: и снаружи, и внутри. 
+                    Каждый твой взгляд — маленькое чудо, от которого сердце замирает.
+                </p>
+                <button class="btn btn--next" onclick="goToPage(3)">
+                    Дальше
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </button>
+            </div>
+        </section>
+
+        <!-- PAGE 3 -->
+        <section class="page" data-index="3">
+            <div class="page__content">
+                <span class="page__emoji">🌸</span>
+                <h2 class="page__title">С тобой каждый день — праздник</h2>
+                <p class="page__text">
+                    Наши моменты вместе — самое ценное, что у меня есть. Тихий вечер или безумное 
+                    приключение — с тобой всё становится особенным и незабываемым.
+                </p>
+                <button class="btn btn--next" onclick="goToPage(4)">
+                    Дальше
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </button>
+            </div>
+        </section>
+
+        <!-- PAGE 4 -->
+        <section class="page" data-index="4">
+            <div class="page__content">
+                <span class="page__emoji">💫</span>
+                <h2 class="page__title">Ты вдохновляешь меня</h2>
+                <p class="page__text">
+                    Ты — моя муза, моя сила и мой покой. Рядом с тобой я становлюсь лучше. 
+                    Ты вдохновляешь меня каждый день своей силой, нежностью и любовью к жизни.
+                </p>
+                <button class="btn btn--next" onclick="goToPage(5)">
+                    А теперь — подарок
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </button>
+            </div>
+        </section>
+
+        <!-- PAGE 5: Coupon -->
+        <section class="page page--coupon" data-index="5">
+            <div class="page__content">
+                <span class="page__emoji">🎁</span>
+                <h2 class="page__title">Твой особенный купон</h2>
+
+                <div class="coupon" id="coupon">
+                    <div class="coupon__inner">
+                        <div class="coupon__header">
+                            <span class="coupon__flower">✿</span>
+                            <span class="coupon__label">КУПОН</span>
+                            <span class="coupon__flower">✿</span>
+                        </div>
+                        <div class="coupon__body">
+                            <div class="coupon__divider"></div>
+                            <p class="coupon__desc">
+                                На безлимитную<br>
+                                <strong>защиту</strong>, <strong>поддержку</strong>,<br>
+                                <strong>любовь</strong>, <strong>объятия</strong><br>
+                                и что угодно
+                            </p>
+                            <div class="coupon__divider"></div>
+                            <p class="coupon__valid">Действителен: <strong>НАВСЕГДА</strong></p>
+                        </div>
+                        <div class="coupon__footer">
+                            <span>❤️ С любовью ❤️</span>
+                        </div>
+                    </div>
+                </div>
+
+
+                <p class="page__footer-text">С 8 Марта, любимая! 💕</p>
+            </div>
+        </section>
+
+    </main>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
