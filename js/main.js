@@ -1,5 +1,5 @@
 (() => {
-    const TOTAL_PAGES = 7;
+    const TOTAL_PAGES = 8;
     let currentPage = 0;
     let isAnimating = false;
     let touchStartY = 0;
@@ -39,7 +39,7 @@
         const goingForward = index > currentPage;
 
         oldPage.classList.remove('active');
-        oldPage.classList.add(goingForward ? 'exit-up' : '');
+        if (goingForward) oldPage.classList.add('exit-up');
 
         newPage.style.transform = goingForward ? 'translateY(40px)' : 'translateY(-40px)';
         newPage.style.opacity = '0';
