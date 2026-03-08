@@ -63,10 +63,10 @@ body {
 
 /* ============ FLOATING HEARTS ============ */
 .hearts-container {
-    position: fixed;
+    position: absolute;
     inset: 0;
     pointer-events: none;
-    z-index: 0;
+    z-index: 20;
     overflow: hidden;
 }
 
